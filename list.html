@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./Comment.js"></script>
+<script>
+var myApp=angular.module("myApp",[]);
+
+myApp.controller("boardController", function($scope){
+	$scope.list=[{},{},{}];
+
+	$scope.regist=function(){
+		for(var i=0;i<$scope.list.length;i++){
+			var c=new Comment($scope.title);
+			angular.element($("#box")).append(c.tr);
+		}
+	}
+});
+</script>
+<body>
+	<div ng-app="myApp" ng-controller="boardController">
+		<input type="text" ng-model="title">
+		<button ng-click="regist()">등록</button>
+
+		<table width="100%" border="1px">		
+			<tr>
+				<td>No</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>작성일</td>
+				<td>조회수</td>
+			</tr>
+		</table>
+		<table id="box" style="background:red;" width="100%">
+			
+		</table>
+	</div> 
+</body>
+</html>
